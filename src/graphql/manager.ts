@@ -6,6 +6,8 @@ export default class GraphQLManager {
     client: ApolloClient
 
     constructor() {
+        // Creating a context link that will update the client with the correct
+        // API_KEY for each request.
         const authLink = new SetContextLink(({ headers }) => {
             return {
                 headers: {
@@ -15,6 +17,13 @@ export default class GraphQLManager {
             }
         })
 
+        // Initially the cache mode was 'cache-first' but since the GQL API only
+        // authorize on network requests it would only do so the first time and
+        // then it uses the cache to return data on future requests, while 
+        // ignoring to check if the API_KEY is correct.
+        // I wanted to somehow verify just the API_KEY and then use the cache as
+        // much as possible to speed up queries, but I don't know the best
+        // approach to do so.
         this.client = new ApolloClient({
             link: authLink.concat(new HttpLink({ uri: process.env.GQL_ENDPOINT! })),
             cache: new InMemoryCache(),
