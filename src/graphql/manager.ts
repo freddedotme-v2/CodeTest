@@ -38,6 +38,10 @@ export default class GraphQLManager {
         }).then((result) => {
             return { success: true, body: result }
         }).catch((error) => {
+            // Error contains an array of errors containing their messages and
+            // other things like stacktraces. I'm not certain on what I would
+            // want to expose to the end-user as I'm guessing this could be
+            // sensitive information.
             return { success: false, body: error }
         })
 
