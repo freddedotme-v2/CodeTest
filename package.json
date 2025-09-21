@@ -1,0 +1,25 @@
+{
+  "name": "job-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p .",
+    "start": "nodemon --watch 'src/'"
+  },
+  "author": "fredde",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/client": "^4.0.5",
+    "express": "^5.1.0",
+    "graphql": "^16.11.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.5.2",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
